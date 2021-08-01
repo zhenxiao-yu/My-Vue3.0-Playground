@@ -13,21 +13,38 @@
     <div id="root"></div>
 </body>
 <script>
+    // Vue.createApp({
+    //     data() {
+    //         return {
+    //             content: 'hello world'
+    //         }
+    //     },
+
+    //     methods: {
+    //         handleBtnClick() {
+    //             const newContent = this.content.split('').reverse().join('');
+    //             this.content = newContent;
+    //         }
+    //     },
+
+    //     template: '<div>{{ content }}<button v-on:click="handleBtnClick">Reverse</button></div >'
+    // }).mount('#root')
+
     Vue.createApp({
         data() {
             return {
+                show: true,
                 content: 'hello world'
             }
         },
 
         methods: {
             handleBtnClick() {
-                const newContent = this.content.split('').reverse().join('');
-                this.content = newContent;
+                this.show = !this.show;
             }
         },
 
-        template: '<div>{{ content }}<button v-on:click="handleBtnClick">Reverse</button></div >'
+        template: '<div><span v-if="show">hello world</span><button v-on:click="handleBtnClick">Hide/Show</button></div>'
     }).mount('#root')
 </script>
 
