@@ -12,7 +12,7 @@
   </body>
 
   <script>
-    Vue.createApp({
+    const app = Vue.createApp({
       data() {
         return {
           inputValue: "",
@@ -28,7 +28,19 @@
       template:
         //'<ul><li>hello</li><li>world</li><li>test1</li><li>test2</li></ul>'
         //'<ul><li v-for="item of list">{{item}} test</li></ul>'
-        '<div><input v-model="inputValue" /><button v-on:click="handleAddItem">Add</button><ul><li v-for="(item, index) of list">{{item}}</li></ul></div>',
-    }).mount("#root");
+        //'<div><input v-model="inputValue" /><button v-on:click="handleAddItem" v-bind:title="{{inputValue}}"></button><ul><li v-for="(item, index) of list">{{item}}</li></ul></div>'
+        '<div><input v-model="inputValue" /><button v-on:click="handleAddItem" v-bind:title="inputValue"></button><ul><todo-item v-for="(item, index) of list" /></ul></div>'
+    })
+
+    app.component('todo-item', {
+      data() {
+        return {
+          item: 'hello mark'
+        }
+      },
+      template: '<div>hellow world</div>'
+    })
+
+    app.mount('#root');
   </script>
 </html>
