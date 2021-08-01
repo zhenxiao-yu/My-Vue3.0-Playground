@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo7</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    //lifecycle hook: execute function at specified time
+    const app = Vue.createApp({
+      data() {
+        return {
+          //message: "<strong>hello world</strong>",//1
+          //disable: true //2
+          message: "hello world",
+          show: true//3
+        };
+      },
+      //template: `<div v-html="message"></div>`//1
+      //template: `<input v-bind:disabled="disable"/>`//2
+      //template: `<div>{{Math.max(1,2)}}</div>` //can put js expression, but not command
+      //template: `<div v-once>{{message}}</div>` //render only once
+      template: `<div v-if="show">{{message}}</div>` //3
+    });
+    const vm = app.mount("#root");
+  </script>
+</html>
