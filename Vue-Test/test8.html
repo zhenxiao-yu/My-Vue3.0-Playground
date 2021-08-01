@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo8</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "hello world",
+          name: "title1", //2 //dynamic property,
+          event: "mouseenter", //3 //dynamic event
+        };
+      },
+      methods: {
+        handleClick() {
+          //alert("clicked");  //2,3
+        },
+      },
+
+      //v-on:click = @click
+      //v-bind:title = :title
+      //template: `<div v-on:click="handleClick" v-bind:title="message">{{message}}</div>` //1
+
+      //   template: `
+      //   <div
+      //   @click="handleClick"
+      //   :[name]="message"
+      //   >{{message}}</div>` //2
+      // });
+
+    //   template: `
+    //   <div
+    //   @[event]="handleClick"
+    //   >{{message}}</div>`, //3
+    // });
+
+    template: `
+     <form action="https://owl.uwo.ca/portal#" @click.prevent="handleClick"> 
+        <button type="submit">Submit</button>
+     </form>
+     `
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
