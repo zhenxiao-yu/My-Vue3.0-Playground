@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/vue@next"></script>
-    <title>demo3</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo3</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // mvvm , vue instance，vue compoenet
+  const app = Vue.createApp({
+    data() {
+      return {
+        inputValue: '',
+        list: []
+      }
+    },
+    methods: {
+      handleAddItem() {
+        //send input value into list 
+        this.list.push(this.inputValue);
+        //clear input field
+        this.inputValue = '';
+      }
+    },
+    template: `
+      <div>
+        <input v-model="inputValue" />
+        <button
+          v-on:click="handleAddItem"
+          v-bind:title="inputValue"
+        >
+          Add
+        </button>
+        <ul>
+          <todo-item
+            v-for="(item, index) of list"
+            v-bind:content="item"
+            v-bind:index="index"
+          />
+        </ul>
+      </div>
+    `
+  });
 
-  <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          inputValue: "",
-          list: [],
-        };
-      },
-      methods: {
-        handleAddItem() {
-          this.list.push(this.inputValue);
-          this.inputValue = "";
-        },
-      },
-      template:
-        //'<ul><li>hello</li><li>world</li><li>test1</li><li>test2</li></ul>'
-        //'<ul><li v-for="item of list">{{item}} test</li></ul>'
-        //'<div><input v-model="inputValue" /><button v-on:click="handleAddItem" v-bind:title="{{inputValue}}"></button><ul><li v-for="(item, index) of list">{{item}}</li></ul></div>'
-        '<div><input v-model="inputValue" /><button v-on:click="handleAddItem" v-bind:title="inputValue"></button><ul><todo-item v-for="(item, index) of list" /></ul></div>'
-    })
+  app.component('todo-item', {
+    props: ['content', 'index'],
+    template: '<li>{{index}} -- {{content}}</li>'
+  });
 
-    app.component('todo-item', {
-      data() {
-        return {
-          item: 'hello mark'
-        }
-      },
-      template: '<div>hellow world</div>'
-    })
+  app.mount('#root');
 
-    app.mount('#root');
-  </script>
+</script>
 </html>
