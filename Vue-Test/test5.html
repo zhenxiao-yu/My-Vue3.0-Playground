@@ -28,6 +28,17 @@
       created() {
           console.log('created')
       },
+
+      //execute automatically before component content has been rendered
+      beforeMount() {
+        console.log('beforeMount')
+      },
+
+      //execute automatically after component content has been rendered
+      mounted() {
+        console.log("mounted")
+      },
+
       /*methods: {
         handleItemClick() {
             alert('click')
