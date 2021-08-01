@@ -6,20 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>demo5</title>
     <script src="https://unpkg.com/vue@next"></script>
-    >
   </head>
   <body>
     <div id="root"></div>
   </body>
   <script>
-      //
+      //lifecycle hook: execute function at specified time
     const app = Vue.createApp({
       data() {
         return {
           message: "hello world",
         };
       },
-      template: "<div>{{message}}</div>",
+
+      //execute automatically after initialize events & lifecycle
+      beforeCreate() {
+        console.log('beforeCreate')
+      },
+
+      //execute automatically after initialize injections and reactivity
+      created() {
+          console.log('created')
+      },
+      /*methods: {
+        handleItemClick() {
+            alert('click')
+        }
+      },*/
+      template: "<div v-on:click='handleItemClick'>{{message}}</div>",
     });
    
     const vm = app.mount("#root");
