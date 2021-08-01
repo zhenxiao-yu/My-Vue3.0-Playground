@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo9</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    //data & methods & computed & watcher
+
+    const app = Vue.createApp({
+        data(){
+            return{
+                message:"hello world",
+                count: 4,
+                price: 11,
+
+            }
+        },
+        computed: {
+            //Apply changes when it's parameters change
+            total() {
+                return this.count * this.price
+            }
+        },
+        methods: {
+            handleClick(){
+                //methods points to instance (ie: this.message = hello world)
+                //console.log("clicked", this.message); //1
+            },
+
+            // formatString(string) {
+            //     return string.toUpperCase();
+            // } //2
+            
+            //Apply cahnges when page is reloaded
+            getTotal(){
+                return this.count * this.price;
+            }
+        },
+        //template: '<div @click="handleClick">{{message}}</div>'//1
+        //template: `<div @click="handleClick"> {{formatString(message)}} </div>` //2
+
+        template: `<div @click="handleClick"> {{total}} </div>` //2
+    });
+    
+    const vm= app.mount('#root')
+</script>
+
+</html>
