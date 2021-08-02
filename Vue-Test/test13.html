@@ -30,17 +30,28 @@
         handleAddBtnClick() {
           //this.listArray=['cow','chicken','pig']; //replace list
           //this.listArray=['bye'].concat(['world','greet']);//concat
-          //this.listArray=['cow','farm,'dog'].filter(item => item === 'farm'); //filter 
+          //this.listArray=['cow','farm,'dog'].filter(item => item === 'farm'); //filter
           //this.listArray[1] ='new animal'; //replace list item
+          //can decalre data fields and displayed automatically
+          //this.listObject.age = 100;
+          //this.listObject.sex = 'male';
         },
       },
 
       //loop normal array list
       template: `
                <div>
-                   <div v-for="(item, index) in listArray" :key="index">
-                      {{item}} --- {{index}}
-                   </div>
+                
+                   <div v-for="(value, key, index) in listObject" 
+                   :key="index" 
+                   
+                   >        
+                        <div v-if="key !== 'lastName'">
+                            {{value}} --- {{key}}
+                        </div>
+                    </div>
+                   <div v-for="item in 10">{{item}}</div>
+
                    <button @click="handleAddBtnClick">Add</button>
               </div>
             `,
