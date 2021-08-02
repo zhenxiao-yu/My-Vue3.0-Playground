@@ -14,22 +14,35 @@
 </body>
 <script>
     //data & methods & computed & watcher
-
+    //if computed and method can both run the same function, use computed for less RAM usage
+    //if computed and watch can both run the same function, use computed for less code
     const app = Vue.createApp({
         data(){
             return{
                 message:"hello world",
                 count: 4,
                 price: 11,
-
+                newTotal: 10
             }
         },
+
         computed: {
-            //Apply changes when it's parameters change
+            //Apply changes when it's dependent parameters change
             total() {
                 return this.count * this.price
             }
         },
+
+        watch: {
+            //execute when price changes 
+            price(current, prev){
+                // setTimeout(() => {
+                //     console.log('price changed')
+                // }, 3000)
+                this.newTotal = current * this.count; //less preferable beacuse than computed
+            }
+        },
+
         methods: {
             handleClick(){
                 //methods points to instance (ie: this.message = hello world)
