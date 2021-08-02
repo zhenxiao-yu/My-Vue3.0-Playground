@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo13</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <style></style>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          listArray: ["test1", "test2", "test3"],
+          listObject: {
+            firstName: "test1",
+            lastName: "test2",
+            job: "test3",
+          },
+        };
+      },
+
+      methods: {
+        handleAddBtnClick() {
+          //this.listArray=['cow','chicken','pig']; //replace list
+          //this.listArray=['bye'].concat(['world','greet']);//concat
+          //this.listArray=['cow','farm,'dog'].filter(item => item === 'farm'); //filter 
+          //this.listArray[1] ='new animal'; //replace list item
+        },
+      },
+
+      //loop normal array list
+      template: `
+               <div>
+                   <div v-for="(item, index) in listArray" :key="index">
+                      {{item}} --- {{index}}
+                   </div>
+                   <button @click="handleAddBtnClick">Add</button>
+              </div>
+            `,
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
