@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo11</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <style>
+   
+  </style>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+            show: false,
+            conditionOne : false,
+            conditionTwo : true
+        }
+      },
+
+      //use v-show when DOM element is getting constantly destroyed 
+      template: `
+
+            <div v-if="show"> Hello World </div>
+            <div v-show="show"> Bye World </div>
+
+            <div v-if="conditionOne"> if </div>
+            <div v-else-if="conditionTwo"> else if </div>
+            <div v-else> else </div>
+            `
+    });
+
+
+    const vm = app.mount("#root");
+  </script>
+</html>
