@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo1</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // Define Component:
+  // Component has the property of reusablity
+  // Global component，onece defined，can be used everywhere，average performance but easy to use，use non-capitalized letters with - when naming
+  // Local component，once defined，can only be used after listing in compoents，good performance but more tedious，use Capital + CamelCasing when naming
+  //when using a local compoenets，you need to define a new name (vue will try to automatically define a name for you)
+  //ie: hello-world': HelloWorld
+
+
+  //counter component (local)
+  const Counter = {
+    data() {
+      return {
+        count: 1
+      }
+    },
+    template: `<div @click="count += 1">{{count}}</div>`
+  }
+
+  //hello world component (local)
+  const HelloWorld = {
+    template: `<div>hello world</div>`
+  }
+
+  const app = Vue.createApp({
+    components: {
+      // counter: Counter,  
+      // 'hello-world': HelloWorld,
+      Counter, HelloWorld,
+    },
+
+    //mount defined components onto the root component 
+    template: `
+      <div>
+        <hello-world />
+        <counter />
+      </div>
+    `
+  });
+
+  //DECALRE NEW VUE Global COMPONENT 
+  // app.component('counter-parent', {
+  //   template: `<counter />`
+  // })
+
+  // app.component('counter', {
+  //   data() {
+  //     return {
+  //       count: 1
+  //     }
+  //   },
+  //   template: `<div @click="count += 1">{{count}}</div>`
+  // })
+
+
+  const vm = app.mount('#root');
+</script>
+</html>
