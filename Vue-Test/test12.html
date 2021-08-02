@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo12</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <style></style>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          listArray: ["test1", "test2", "test3"],
+          listObject: {
+            firstName: "test1",
+            lastName: "test2",
+            job: "test3",
+          },
+        };
+      },
+
+      methods: {
+        handleAddBtnClick() {
+          //use listArray functions push, pop, shift, unshift, splice, sort, reverse etc..
+          //this.listArray.push("hello"); //add from back
+          //this.listArray.pop(); //remove from back
+          //this.listArray.shift(); //remove from front
+          //this.listArray.unshift(); //add from front
+        },
+      },
+
+      //loop normal array list
+      //   template: `
+      //         <div>
+      //             <div v-for="(item, index) in listArray">
+      //                 {{item}} --- {{index}}
+      //             </div>
+      //         </div>
+      //      `
+
+      //loop througfh array object
+      //   template: `
+      //          <div>
+      //            <div v-for="(value, key, index) in listObject">
+      //                 {{value}} --- {{key}} --{{index}}
+      //             </div>
+      //         </div>
+      //      `,
+
+      //loop normal array list
+      template: `
+               <div>
+                   <div v-for="(item, index) in listArray" :key="index">
+                      {{item}} --- {{index}}
+                   </div>
+                   <button @click="handleAddBtnClick">Add</button>
+              </div>
+            `,
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
