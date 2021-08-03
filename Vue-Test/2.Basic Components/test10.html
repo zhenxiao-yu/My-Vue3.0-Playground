@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo11</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // scoped slots
+  //v-slot:header can be written as # header
+  const app = Vue.createApp({
+    template: `
+      <list v-slot="{item}">
+        <div>{{item}}</div>
+      </list>
+    `
+  });
+
+  app.component('list', {
+    data() {return {list: [1, 2, 3]}},
+    template: `
+      <div>
+        <slot v-for="item in list" :item="item" />
+      </div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+</html>
