@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo12</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // dynamic component: based on changing data and the compoent tag，swicth compoents dynamically
+    //ie. <component :is="currentItem" />
+    //use <keep-alive> </keep-alive> around <component> to keep it's value and rerendering
+
+    // async compoents: 
+    //In large applications, we may need to divide the app into smaller chunks and only load a component 
+    //from the server when it's needed. To make that possible, 
+    //Vue has a 'defineAsyncComponent' method
+
+    const app = Vue.createApp({
+      template: `
+      <div>
+        <common-item />
+        <async-common-item />
+      </div>
+    `,
+    });
+
+    app.component("common-item", {
+      template: `<div>hello world</div>`,
+    });
+
+    app.component(
+      "async-common-item",
+      Vue.defineAsyncComponent(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              template: `<div>this is an async component</div>`,
+            });
+          }, 4000);
+        });
+      })
+    );
+
+    const vm = app.mount("#root");
+  </script>
+</html>
