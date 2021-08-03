@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo3</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+            content: 1234,
+          
+        };
+      },
+      //   template: `
+      //   <div><test :content="num" :a="a" :b="b" :c="c"/></div>
+      // `,
+
+      //v-bind="params"
+      // :content="params.content" :a="params.a" :b="params.b" :c="params.c"
+      // when passing props，use content-abc，when receiving props，use contentAbc 
+      // One way data flow: child component can use data passed by parent component，but cannot edit it
+      template: `
+        <div><test :content-abc="content"/></div>
+      `,
+    });
+
+    // app.component("test", {
+    //   props: ["content", "a", "b", "c"],
+    //   template: `<div>{{content}}--{{a}}--{{b}}--{{c}}</div>`,
+    // });
+
+    app.component("test", {
+      props: ['contentAbc'],
+      template: `<div>{{contentAbc}}</div>`,
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
