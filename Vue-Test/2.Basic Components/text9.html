@@ -13,37 +13,37 @@
 
   <script>
     //slot
-    
+    //<slot>my default value</slot> can show default value
+    //v-slot
     const app = Vue.createApp({
       data() {
         return { text: "submit" };
       },
       template: `
-        <myForm>
-            <div>{{text}}</div> 
-        </myForm>
+      <layout>
 
-        <myForm >
-            <button>{{text}}</button>
-        </myForm>
-      `,
+        <template v-slot:header>
+          <div>header</div>
+        </template>
+
+        <template v-slot:footer>
+          <div>footer</div>
+        </template>
+
+      </layout>
+    `,
     });
 
-    app.component("myForm", {
-      methods: {
-        handleClick() {
-          alert(123);
-        },
-      },
-
+    app.component("layout", {
       template: `
-        <div>
-            <input />
-            <span @click="handleClick">
-            <slot></slot>
-            </span>
-        </div>
-      `,
+      <div>
+        <slot name="header"></slot>
+        <div>content</div>
+
+        <slot name="footer"></slot>
+      </div>
+
+    `,
     });
 
     const vm = app.mount("#root");
