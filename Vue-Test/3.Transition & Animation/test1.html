@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo2</title>
+  <style>
+      /* shake effect define */
+    @keyframes shake {
+      0% {
+        transform: translateX(-100px)
+      }
+      50% {
+        transform: translateX(-50px)
+      }
+      100% {
+        transform: translateX(50px)
+      }
+    }
+    /* exit animation */
+    .hello-leave-active {
+      animation: shake 3s;
+    }
+    /* entry animation */
+    .hello-enter-active {
+      animation: shake 3s;
+    }
+
+    /* v-enter-active is used when theres no name in <transition>*/
+
+  </style>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // Single Element，and its entry and exit transition animation
+  const app = Vue.createApp({
+    data() {
+      return {
+        show: false
+      }
+    },
+    methods: {
+      handleClick() {
+        this.show = !this.show;
+      }
+    },
+    template: `
+      <div>
+        <transition name="hello">
+          <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleClick">Switch</button>
+      </div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+</html>
