@@ -7,7 +7,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
-  <title>lesson 24</title>
+  <title>demo3</title>
   <style>
     /* @keyframes shake {
       0% {
@@ -39,7 +39,7 @@
   <div id="root"></div>
 </body>
 <script>
-  // 单元素，单组件的入场出场动画
+  
   const app = Vue.createApp({
     data() {
       return {
@@ -71,6 +71,9 @@
         alert(123);
       }
     },
+
+    //:css="false" to disable css
+    //@before-enter="handleBeforeEnter"
     template: `
       <div>
         <transition
@@ -81,7 +84,7 @@
         >
           <div v-show="show">hello world</div>
         </transition>
-        <button @click="handleClick">切换</button>
+        <button @click="handleClick">Switch</button>
       </div>
     `
   });
