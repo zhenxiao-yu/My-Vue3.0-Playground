@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo1</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // ref, reactive
+    //responsive reference
+    //How it works: package data with proxy, when data change, trigger template content change
+    //ref handles basic data types
+    //reactive handles non-basic data types
+    const app = Vue.createApp({
+      template: `
+      <div>{{nameObj.name}}</div>
+    `,
+      //composition API setup function
+      //created: beofore instance has been fully initialized
+      //cant use this. keyword in steup because the instance has not been initialized
+
+      setup(props, context) {
+        // const { ref } = Vue;
+        // //proxy, 'Mark' becomes proxy({value:'Mark'})
+        // let name = ref("Mark");
+        // setTimeout(() => {
+        //   name.value = "Yu";
+        // }, 2000);
+
+        // return { name };
+
+        const { reactive } = Vue;
+        //proxy , { name: 'mark'} becomes proxy({name: 'mark'})
+        const nameObj = reactive({name: 'Mark'});
+        setTimeout(() => {
+            nameObj.name = 'Yu'
+        }, 2000)
+        return { nameObj }
+      }
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
