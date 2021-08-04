@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>demo1</title>
-  <style>
-    /*  动画
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo1</title>
+    <style>
+      /*  动画
     @keyframes leftToRight {
       0% {
         transform: translateX(-100px);
@@ -21,7 +21,7 @@
       animation: leftToRight 3s;
     } */
 
-    /* 过渡
+      /* 过渡
     .transition {
       transition: 3s background-color ease;
     }
@@ -32,44 +32,43 @@
       background: green;
     } */
 
-    .transition {
-      transition: 3s background-color ease;
-    }
-
-  </style>
-
-  <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="root"></div>
-</body>
-<script>
-  const app = Vue.createApp({
-    data() {
-      return {
-        styleObj: {
-          background: 'blue'
-        }
+      .transition {
+        transition: 3s background-color ease;
       }
-    },
-    methods: {
-      handleClick() {
+    </style>
+
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          styleObj: {
+            background: "blue",
+          },
+        };
+      },
+      methods: {
+        handleClick() {
           //toggle between two color background
-        if(this.styleObj.background === 'blue') {
-          this.styleObj.background = 'green';
-        }else {
-          this.styleObj.background = 'blue'
-        }
-      }
-    },
-    template: `
+          if (this.styleObj.background === "blue") {
+            this.styleObj.background = "green";
+          } else {
+            this.styleObj.background = "blue";
+          }
+        },
+      },
+      template: `
       <div>
         <div class="transition" :style="styleObj">hello world</div>
         <button @click="handleClick">Switch</button>
       </div>
-    `
-  });
+    `,
+    });
 
-  const vm = app.mount('#root');
-</script>
+    const vm = app.mount("#root");
+  </script>
 </html>
