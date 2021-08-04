@@ -23,7 +23,7 @@
       setup(props, context) {
         // const { ref } = Vue;
         // proxy, 'Mark' becomes proxy({value:'Mark'})
-        // let name = ref('dell');
+        // let name = ref('dYu');
         // setTimeout(() => {
         //   name.value = 'lee'
         // }, 2000)
@@ -35,9 +35,9 @@
         setTimeout(() => {
           nameObj.name = "lee";
         }, 2000);
-        // toRefs proxy({ name: 'dell', age: 28}), {
-        //  name: proxy({ value: 'dell'}),
-        //  age: proxy({value: 28})
+        // toRefs proxy({ name: 'Mark', age: 20}), {
+        //  name: proxy({ value: 'Mark'}),
+        //  age: proxy({value: 20})
         // }
         const { name, age } = toRefs(nameObj);
         return { name };
