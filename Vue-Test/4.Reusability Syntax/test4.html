@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo5</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // Plugins are self-contained code that usually add
+    //global-level functionality to Vue. It is either an object
+    //that exposes an install() method, or a function.
+    const myPlugin = {
+      //deafult function
+      install(app, options) {
+
+        app.provide("name", "Mark Yu");
+        app.directive("focus", {
+          mounted(el) {
+            el.focus();
+          },
+        });
+        app.mixin({
+          mounted() {
+            console.log("mixin");
+          },
+        });
+        app.config.globalProperties.$sayHello = "hello world";
+      },
+    };
+
+    const app = Vue.createApp({
+      template: `
+      <my-title />
+    `,
+    });
+
+    app.component("my-title", {
+      inject: ["name"],
+      mounted() {
+        console.log(this.$sayHello);
+      },
+      template: `<div>{{name}}<input v-focus /></div>`,
+    });
+
+    //use plugin
+    app.use(myPlugin, { name: "dell" });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
