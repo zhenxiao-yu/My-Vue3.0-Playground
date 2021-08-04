@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo0</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const app = Vue.createApp({
+      
+      //in real applications, the length of vur can get very long, fragemeneted and hard to keep track
+      //   methods: {
+      //     setName() {},
+      //     setAge() {},
+      //     a() {},
+      //     b() {}
+      //   },
+      //   computed:{
+
+      //   },
+      //   directive: {
+
+      //   },
+      //   mixin:[],
+
+      template: `
+      <div>name:{{name}}, age:{{age}}</div>
+    `,
+      //composition API setup function
+      //created: beofore instance has been fully initialized
+      setup(props, context) {
+          return {
+              name: "mark"
+          }
+      },
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
