@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo9</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // beforeCreate	|   Not needed*
+    // created	|   Not needed*
+    //These lifecyle hooks are not needed because setup() is executed during beforeCreate and crerated
+    //any function that runs in these hooks can be wriiten in the setup() function directly
+
+    // beforeMount |    onBeforeMount
+    // mounted |    onMounted
+    // beforeUpdate | onBeforeUpdate
+    // updated  |   onUpdated
+    // beforeUnmount    |  onBeforeUnmount
+    // unmounted    |   onUnmounted
+    // errorCaptured    |   onErrorCaptured
+
+    //execute when vue retracks render dependencies
+    // renderTracked    |   onRenderTracked
+    //execute when vue rerenders a page
+    // renderTriggered     |    onRenderTriggered
+    // activated       |    onActivated
+    // deactivated  |   onDeactivated
+
+    const app = Vue.createApp({
+      setup() {
+        const name = ref('Mark')
+        onBeforerMount(() => {
+            console.log('onBeforeMount')
+        })
+        const { onBeofreMount, onMounted } = Vue;
+        return {name, handleClick};
+      },
+      template: `
+      <div>
+        <div @click="handleClick">{{name}}</div>
+      </div>
+    `,
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
