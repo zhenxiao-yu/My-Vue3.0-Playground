@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo6</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    //seperate code for list
+    const listRelativeEffect = () => {
+      const { reactive } = Vue;
+      //set list as a reactive
+      const list = reactive([]);
+
+      const addItemToList = (item) => {
+        list.push(item);
+      };
+      return { 
+        list, 
+        addItemToList };
+    };
+
+    //seperate code for input
+    const inputRelativeEffect = () => {
+      const { ref } = Vue;
+      const inputValue = ref("");
+      const handleInputValueChange = (e) => {
+        inputValue.value = e.target.value;
+      };
+      return { 
+          inputValue, 
+          handleInputValueChange };
+    };
+
+    const app = Vue.createApp({
+      setup() {
+        //set up relative effect pipeline
+        const { list, addItemToList } = listRelativeEffect();
+        const { inputValue, handleInputValueChange } = inputRelativeEffect();
+
+        return {
+          list,
+          addItemToList,
+          inputValue,
+          handleInputValueChange,
+        };
+      },
+
+      // //define ref and reactive from Vue
+      // const { ref } = Vue;
+      // //set input value as a ref
+      // const inputValue = ref("123");
+      // //e = event
+      // const handleInputValueChange = (e) => {
+      //   //console.log(e.target.value);
+      //   inputValue.value = e.target.value;
+      // };
+
+      //     return {
+      //       //fields
+      //       inputValue,
+      //       //methods
+      //       handleInputValueChange,
+      //     };
+      //   },
+
+      template: `
+    <div>
+        <div>
+          <input :value="inputValue" @input="handleInputValueChange" />
+          <button @click="() => addItemToList(inputValue)">Submit</button>
+        </div>
+        <ul>
+          <li v-for="(item, index) in list" :key="index">{{item}}</li>
+        </ul>
+      </div>
+
+    `,
+    });
+
+    const vm = app.mount("#root");
+  </script>
+</html>
