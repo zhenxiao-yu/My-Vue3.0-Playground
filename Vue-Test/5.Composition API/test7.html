@@ -33,8 +33,8 @@
         );
 
         // WatchEffect, execete immediately
-        // dont pass what you want to observe，自动会感知代码依赖，不需要传递很多参数，只要传递一个毁掉函数
-        // 不能获取之前数据的值
+        // dont pass what you want to observe，only pass destroy function (set time out)
+        // cant keep track of  previous value
         // const stop = watchEffect(() => {
         //   console.log(nameObj.name);
         //   console.log(nameObj.englishName);
